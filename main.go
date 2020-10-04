@@ -84,8 +84,8 @@ func postMessage(author string, body string) {
 		Body:   body,
 	}
 
-	msgj, _ := json.Marshal(msgj)
-	resp, err := http.Post("http://159.89.8.129:2814/message"), "application/json", bytes.NewBuffer(msg))
+	msgj, _ := json.Marshal(msg)
+	resp, err := http.Post("http://159.89.8.129:2814/message", "application/json", bytes.NewBuffer(msgj))
 	if err != nil {
 		log.Println("UNABLE TO SAVE MESSAGE")
 	}
