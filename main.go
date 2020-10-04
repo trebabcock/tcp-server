@@ -43,7 +43,10 @@ func handleRequest(conn net.Conn) {
 			c.Write([]byte(username + " HAS LEFT\n"))
 		}
 	}()
-	defer postMessage("SERVER", username+" HAS LEFT")
+	defer func() {
+		left := username+ " HAS LEFT"
+		postMessage("SERVER", left)
+	}()
 	defer delete(ipu, conn)
 	defer conn.Close()
 
