@@ -64,6 +64,16 @@ func handleRequest(conn net.Conn) {
 			}
 			username = ipu[conn]
 			postMessage("SERVER", ipu[conn]+" HAS JOINED")
+		} else if asdf == "/active" {
+			snd := "ACTIVE USERS:\n"
+			for _, n := range ipu {
+				snd += ("\x20\x20\x20\x20" + n + "\n")
+			}
+			for c := range ipu {
+				c.Write([]byte(snd))
+			}
+			postMessage(ipu[conn], asdf)
+			postMessage("SERVER", snd)
 		} else {
 			msg := ipu[conn] + ": " + asdf
 			msgBuf := []byte(msg)
