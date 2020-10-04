@@ -44,7 +44,7 @@ func handleRequest(conn net.Conn) {
 		}
 	}()
 	defer func() {
-		left := username+ " HAS LEFT"
+		left := username + " HAS LEFT"
 		postMessage("SERVER", left)
 	}()
 	defer delete(ipu, conn)
