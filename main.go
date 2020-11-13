@@ -15,7 +15,7 @@ var ipu = make(map[net.Conn]string)
 
 func main() {
 	port := flag.Int("port", 3333, "Port to accept connections on.")
-	host := flag.String("host", "192.168.40.13", "Host or IP to bind to")
+	host := flag.String("host", "", "Host or IP to bind to")
 	flag.Parse()
 
 	l, err := net.Listen("tcp", ":"+strconv.Itoa(*port))
@@ -98,7 +98,7 @@ func postMessage(author string, body string) {
 	}
 
 	msgj, _ := json.Marshal(msg)
-	resp, err := http.Post("http://159.89.8.129:2814/message", "application/json", bytes.NewBuffer(msgj))
+	resp, err := http.Post("http://fglteam.com/api/v1/message", "application/json", bytes.NewBuffer(msgj))
 	if err != nil {
 		log.Println("UNABLE TO SAVE MESSAGE")
 	}
